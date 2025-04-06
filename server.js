@@ -15,16 +15,18 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Importar las rutas
-const TerrarioRoutes = require("./Routes/TerrarioRoutes");
-
 // Inicializar la aplicación Express
 const app = express();
 const port = process.env.PORT || 4000;
 
+// Importar las rutas
+const TerrarioRoutes = require("./Routes/TerrarioRoutes");
+const productoRoutes = require('./routes/ProductoRoutes');
+const dispositivoRoutes = require('./routes/DispositivoRoutes');
+
 // Configurar CORS
 const corsOptions = {
-  origin: 'http://localhost:3000', // Cambia esto al origen de tu frontend
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -43,7 +45,7 @@ app.use("/api/usuarios", (req, res, next) => {
 // Conectar a la base de datos
 conectarDB();
 
-// Rutas API existentes
+// Rutas API
 app.use("/api/misiones", require("./routes/MisionRoutes"));
 app.use("/api/visiones", require("./Routes/VisionRoutes"));
 app.use("/api/terminos", require("./Routes/TerminoRoutes"));
@@ -51,8 +53,11 @@ app.use("/api/politicas", require("./Routes/PoliticaRoutes"));
 app.use("/api/preguntas", require("./Routes/PreguntaRoutes"));
 app.use("/api/contactos", require("./Routes/ContactoRoutes"));
 app.use("/api/informaciones", require("./Routes/InformacionRoutes"));
-app.use("/api/terrario", TerrarioRoutes); // Ahora está correctamente importado
-app.use("/api/productos", require("./routes/ProductoRoutes"));
+app.use("/api/terrario", TerrarioRoutes);
+
+// IMPORTANTE: Solo usar una vez cada ruta
+app.use('/api/productos', productoRoutes);
+app.use("/api/dispositivos", dispositivoRoutes);
 
 // Nueva ruta para el control de actuadores
 app.post("/api/control", (req, res) => {

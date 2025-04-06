@@ -25,8 +25,18 @@ const authMiddleware = (rolesPermitidos = []) => {
 
       // Asignar el usuario al objeto de solicitud
       req.user = usuario;
+      
+      // AÑADIR ESTO: También asignar como req.usuario para compatibilidad
+      req.usuario = {
+        id: usuario._id.toString(),  // Importante convertir a string
+        nombre: usuario.nombre,
+        email: usuario.email,
+        role: usuario.rol
+      };
+      
       next();
     } catch (error) {
+      console.error("Error de autenticación:", error);
       res.status(400).json({ error: "Token inválido o usuario no encontrado." });
     }
   };
