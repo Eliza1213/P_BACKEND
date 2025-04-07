@@ -1,6 +1,6 @@
 // routes/terminoRoutes.js
 const express = require("express");
-const Termino = require("../Models/Termino");  // Cambiar Mision por Termino
+const Termino = require("../models/Termino");  // Cambiar Mision por Termino
 const router = express.Router();
 
 // Crear nuevo término

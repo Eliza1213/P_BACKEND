@@ -1,5 +1,5 @@
 const express = require("express");
-const Informacion = require("../Models/Informacion"); // Asegúrate de que la ruta del modelo sea correcta
+const Informacion = require("../models/Informacion"); // Asegúrate de que la ruta del modelo sea correcta
 const router = express.Router();
 
 // Crear una nueva información

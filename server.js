@@ -20,7 +20,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // Importar las rutas
-const TerrarioRoutes = require("./Routes/TerrarioRoutes");
+const TerrarioRoutes = require("./routes/TerrarioRoutes");
 const productoRoutes = require('./routes/ProductoRoutes');
 const dispositivoRoutes = require('./routes/DispositivoRoutes');
 
@@ -45,14 +45,19 @@ app.use("/api/usuarios", (req, res, next) => {
 // Conectar a la base de datos
 conectarDB();
 
+// Ruta raíz básica para evitar errores 404
+app.get("/", (req, res) => {
+  res.send("Bienvenido a mi servidor!");
+});
+
 // Rutas API
 app.use("/api/misiones", require("./routes/MisionRoutes"));
-app.use("/api/visiones", require("./Routes/VisionRoutes"));
-app.use("/api/terminos", require("./Routes/TerminoRoutes"));
-app.use("/api/politicas", require("./Routes/PoliticaRoutes"));
-app.use("/api/preguntas", require("./Routes/PreguntaRoutes"));
-app.use("/api/contactos", require("./Routes/ContactoRoutes"));
-app.use("/api/informaciones", require("./Routes/InformacionRoutes"));
+app.use("/api/visiones", require("./routes/VisionRoutes"));
+app.use("/api/terminos", require("./routes/TerminoRoutes"));
+app.use("/api/politicas", require("./routes/PoliticaRoutes"));
+app.use("/api/preguntas", require("./routes/PreguntaRoutes"));
+app.use("/api/contactos", require("./routes/ContactoRoutes"));
+app.use("/api/informaciones", require("./routes/InformacionRoutes"));
 app.use("/api/terrario", TerrarioRoutes);
 
 // IMPORTANTE: Solo usar una vez cada ruta

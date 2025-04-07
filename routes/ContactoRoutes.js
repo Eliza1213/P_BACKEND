@@ -1,5 +1,5 @@
 const express = require("express");
-const Contacto = require("../Models/Contacto"); // Asegúrate de que la ruta del modelo sea correcta
+const Contacto = require("../models/Contacto"); // Asegúrate de que la ruta del modelo sea correcta
 const router = express.Router();
 
 // Crear un nuevo contacto

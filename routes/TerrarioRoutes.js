@@ -1,7 +1,7 @@
 // routes/terrarioRoutes.js
 const express = require("express");
 const router = express.Router();
-const TerrarioData = require("../Models/TerrarioData");
+const TerrarioData = require("../models/TerrarioData");
 
 // Ruta para guardar datos del terrario
 router.post("/terrario-data", async (req, res) => {

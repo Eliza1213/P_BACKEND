@@ -1,5 +1,5 @@
 const express = require("express");
-const Politica = require("../Models/Politica");
+const Politica = require("../models/Politica");
 const router = express.Router();
 
 // Crear nueva política
