@@ -26,7 +26,12 @@ const dispositivoRoutes = require('./routes/DispositivoRoutes');
 
 // Configurar CORS
 const corsOptions = {
-  origin: ['http://localhost:3000','https://mi-proyecto-virid.vercel.app'],
+  origin: [
+    'http://localhost:3000',
+    'https://mi-proyecto-virid.vercel.app',
+    'https://web-proyecto-sage.vercel.app'  // ✅ frontend de producción
+  ],
+  
   optionsSuccessStatus: 200,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
